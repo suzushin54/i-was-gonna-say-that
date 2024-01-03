@@ -1,0 +1,18 @@
+.myTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.myTable th, .myTable td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.myTable th {
+    background-color: #424242;
+}
+
+.myTable tr:hover {
+    background-color: #252525;
+}
