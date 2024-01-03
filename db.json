@@ -1,0 +1,6 @@
+{
+    "phrases": [
+        { "id": 1, "scene": "Restaurant", "phrase": "Could I have the menu, please?", "tags": ["food", "request"] },
+        { "id": 2, "scene": "Airport", "phrase": "Where is the departure gate?", "tags": ["travel", "question"] }
+    ]
+}
