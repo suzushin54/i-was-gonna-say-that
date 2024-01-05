@@ -1,14 +1,29 @@
 services:
-  app:
-    build: .
+  api:
+    build:
+      context: ./api
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./api:/api
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://app:P@ssw0rd!@postgres/iwgst
+    command: npm run start
+
+  web:
+    build:
+      context: ./web
     ports:
       - "3030:3000"
     volumes:
-      - .:/app
+      - ./web:/app
       - /app/node_modules
     environment:
       - NODE_ENV=development
     command: npm run dev
+
   postgres:
     image: postgres
     ports:
