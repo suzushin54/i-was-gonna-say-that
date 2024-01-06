@@ -1,16 +1,15 @@
 services:
   api:
     build:
-      context: ./api
+      context: ./api/iwgst-api
+      dockerfile: Dockerfile
     ports:
       - "4000:4000"
-    volumes:
-      - ./api:/api
     depends_on:
       - postgres
     environment:
       - DATABASE_URL=postgresql://app:P@ssw0rd!@postgres/iwgst
-    command: npm run start
+    command: npm run start:prod
 
   web:
     build:
