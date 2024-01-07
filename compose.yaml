@@ -9,7 +9,7 @@ services:
       - postgres
     environment:
       - DATABASE_URL=postgresql://app:P@ssw0rd!@postgres/iwgst
-    command: npm run start:prod
+    command: npm run start:dev
 
   web:
     build:
