@@ -10,7 +10,8 @@ stop:
 
 # Build the application
 build:
-	pnpm run build
+	rm -rf dist
+	docker compose build
 
 # Run Prisma migrations to update the database schema
 migrate-db:

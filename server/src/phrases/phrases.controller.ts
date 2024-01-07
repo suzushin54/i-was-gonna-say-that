@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { PhrasesService } from './phrases.service';
+import { CreatePhraseDto } from './dto/create-phrase.dto';
 
 @Controller('phrases')
 export class PhrasesController {
@@ -8,5 +9,10 @@ export class PhrasesController {
   @Get()
   async getAll() {
     return this.phrasesService.getAllPhrases();
+  }
+
+  @Post()
+  create(@Body() createPhraseDto: CreatePhraseDto) {
+    return this.phrasesService.createPhrase(createPhraseDto);
   }
 }
