@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import styles from './Modal.module.css';
 
 interface ModalComponentProps {
@@ -6,10 +7,10 @@ interface ModalComponentProps {
   onClose: () => void;
 }
 
-const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onClose }) => {
+const ModalComponent: React.FC<ModalComponentProps> = ({isOpen, onClose}) => {
   if (!isOpen) return null;
 
-  return (
+  return ReactDOM.createPortal(
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
         <h2>新規フレーズ追加</h2>
@@ -30,7 +31,8 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onClose }) => {
           <button type="button" onClick={onClose}>閉じる</button>
         </form>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
