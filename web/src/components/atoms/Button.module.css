@@ -7,3 +7,11 @@
     cursor: pointer;
     font-size: 16px;
 }
+
+.primaryButton {
+    background-color: #007bff;
+}
+
+.secondaryButton {
+    background-color: #ccc;
+}
