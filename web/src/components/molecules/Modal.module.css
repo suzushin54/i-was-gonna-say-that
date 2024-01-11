@@ -11,6 +11,11 @@
 }
 
 .modalContent {
+    width: 75vw; /* ビューポート幅の75% */
+    height: 75vh; /* ビューポート高さの75% */
+    max-width: 640px; /* 最大横幅を制限する場合 */
+    max-height: 480px; /* 最大縦幅を制限する場合 */
+    overflow: auto;
     background-color: white;
     color: #424242;
     padding: 20px;
@@ -32,6 +37,13 @@
 }
 
 .input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.textarea {
+    width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

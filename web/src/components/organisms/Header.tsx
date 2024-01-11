@@ -1,17 +1,18 @@
 "use client";
 
 import React, { useState } from 'react';
-import ButtonComponent from '@/components/atoms/Button';
-import ModalComponent from '@/components/molecules/Modal';
+import Button from '@/components/atoms/Button';
+import Modal from '@/components/molecules/Modal';
+import styles from './Header.module.css';
 
 const Header: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <header>
+    <header className={styles.header}>
       <h1>フレーズ一覧</h1>
-      <ButtonComponent text="新規追加" onClick={() => setIsModalOpen(true)} />
-      <ModalComponent isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Button text="新規追加" onClick={() => setIsModalOpen(true)} />
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </header>
   );
 };

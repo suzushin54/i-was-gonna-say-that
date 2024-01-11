@@ -1,0 +1,6 @@
+.header {
+    display: flex;
+    justify-content: space-between; /* 左右のコンテンツを端に寄せる */
+    align-items: center;
+    padding: 15px 15px;
+}

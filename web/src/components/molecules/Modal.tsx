@@ -19,9 +19,9 @@ const ModalComponent: React.FC<ModalComponentProps> = ({isOpen, onClose}) => {
     onClose();
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {id, value} = event.target;
-    setPhraseData({...phraseData, [id]: value});
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = event.target as HTMLInputElement | HTMLTextAreaElement;
+    setPhraseData({ ...phraseData, [id]: value });
   };
 
   if (!isOpen) return null;
@@ -42,10 +42,10 @@ const ModalComponent: React.FC<ModalComponentProps> = ({isOpen, onClose}) => {
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="phrase" className={styles.label}>フレーズ:</label>
-          <input
-            type="text"
+          <textarea
             id="phrase"
-            className={styles.input}
+            className={styles.textarea}
+            rows={3}  // 行数を指定
             value={phraseData.phrase}
             onChange={handleInputChange}
           />
