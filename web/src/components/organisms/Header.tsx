@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Button from '@/components/atoms/Button';
 import Modal from '@/components/molecules/Modal';
+import AddPhraseForm from "@/app/AddPhraseForm";
 import styles from './Header.module.css';
 
 const Header: React.FC = () => {
@@ -10,9 +11,11 @@ const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      <h1>フレーズ一覧</h1>
-      <Button text="新規追加" onClick={() => setIsModalOpen(true)} />
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <h1>I was gonna say that.</h1>
+      <Button text="Add" onClick={() => setIsModalOpen(true)} />
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <AddPhraseForm />
+      </Modal>
     </header>
   );
 };

@@ -20,9 +20,9 @@ const PhraseTable: React.FC<PhraseTableProps> = ({ phrases }) => {
       <thead>
       <tr>
         <th>ID</th>
-        <th>シーン</th>
-        <th>フレーズ</th>
-        <th>タグ</th>
+        <th>Scene</th>
+        <th>Phrase</th>
+        <th>Tags</th>
       </tr>
       </thead>
       <tbody>

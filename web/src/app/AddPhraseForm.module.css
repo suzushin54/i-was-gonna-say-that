@@ -1,0 +1,52 @@
+.formGroup {
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.label {
+    margin-bottom: 5px;
+    color: #CCCCCC;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    background-color: #262626;
+    color: #DDDDDD;
+    resize: vertical;
+}
+
+.button {
+    padding: 8px 16px;
+    margin-top: 10px;
+    align-self: center;
+    background-color: #0044CC;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0066FF;
+}
+
+.button.secondary {
+    background-color: #FFC107;
+}
+
+.button.secondary:hover {
+    background-color: #FFD54F;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}

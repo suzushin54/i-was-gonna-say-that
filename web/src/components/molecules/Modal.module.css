@@ -1,56 +1,26 @@
 .modalOverlay {
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5); /* 半透明の背景 */
 }
 
 .modalContent {
-    width: 75vw; /* ビューポート幅の75% */
-    height: 75vh; /* ビューポート高さの75% */
-    max-width: 640px; /* 最大横幅を制限する場合 */
-    max-height: 480px; /* 最大縦幅を制限する場合 */
-    overflow: auto;
-    background-color: white;
-    color: #424242;
     padding: 20px;
+    width: 75vw;
+    height: 75vh;
+    max-width: 640px;
+    max-height: 480px;
+    overflow: auto;
+    background-color: #1A1A1A;
+    color: #EEEEEE;
     border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
     gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.formGroup {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.label {
-    margin-bottom: 5px;
-}
-
-.input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.button {
-    padding: 8px 16px;
-    margin-top: 10px;
-    align-self: center;
-}
