@@ -1,8 +1,8 @@
 .header {
     display: flex;
-    justify-content: space-between; /* 左右のコンテンツを端に寄せる */
+    justify-content: space-between;
     align-items: center;
-    padding: 15px 15px;
+    padding: 5px 15px 15px 15px;
 }
 
 .header h1 {
@@ -10,7 +10,6 @@
     font-size: 1.5rem;
     font-weight: bold;
     color: #2842c5;
-    margin: 0;
     padding: 0.5rem 0;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
