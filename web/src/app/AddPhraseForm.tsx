@@ -5,9 +5,27 @@ import styles from './AddPhraseForm.module.css';
 const AddPhraseForm: React.FC = () => {
   const [phraseData, setPhraseData] = useState({scene: '', phrase: '', tags: ''});
 
-  const handleSubmit = () => {
-    // TODO: データ送信処理を実装する
-    console.log(phraseData);
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('http://localhost:4000/phrases', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          scene: phraseData.scene,
+          phrase: phraseData.phrase,
+          tags: phraseData.tags.split(',').map(tag => tag.trim())
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      console.log('Phrase added successfully');
+    } catch (error) {
+      console.error('Error submitting form', error);
+    }
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
