@@ -9,7 +9,7 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary';
 }
 
-const Button: React.FC<ButtonProps> = ({text, onClick, type = "button", className = '', variant = 'primary'}) => {
+const Button: React.FC<ButtonProps> = ({text, onClick, type = "submit", className = '', variant = 'primary'}) => {
   const buttonStyle = variant === 'primary' ? styles.primaryButton : styles.secondaryButton;
 
   return (
