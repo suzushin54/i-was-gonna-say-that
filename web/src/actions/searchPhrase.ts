@@ -1,14 +1,18 @@
 "use server";
 
-export async function searchServerAction(formData: FormData) {
+import { Phrase } from '@/types/phrase';
 
-  // ... 以降の処理
-  // 動作確認用のダミーデータを返却
-  return {
-    phrases: [
-      "Phrase 1",
-      "Phrase 2",
-      "Phrase 3"
-    ]
-  };
+type SearchPhrasesResponse = Phrase[];
+
+export async function searchServerAction(formData: FormData) {
+  const query = formData.get('query');
+
+  if (typeof query !== 'string') {
+    throw new Error('検索クエリが不正です。');
+  }
+
+  const response = await fetch(`http://host.docker.internal:4000/phrases/search?query=${encodeURIComponent(query)}`);
+  const result: SearchPhrasesResponse = await response.json();
+
+  return result;
 }
