@@ -18,4 +18,30 @@ export class PhrasesService {
       data,
     });
   }
+
+  async searchPhrases(query: string) {
+    return this.prisma.phrase.findMany({
+      where: {
+        OR: [
+          {
+            scene: {
+              contains: query,
+              mode: 'insensitive',
+            },
+          },
+          {
+            phrase: {
+              contains: query,
+              mode: 'insensitive',
+            },
+          },
+          {
+            tags: {
+              has: query,
+            },
+          },
+        ],
+      },
+    });
+  }
 }
