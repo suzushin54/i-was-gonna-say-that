@@ -1,20 +1,14 @@
 import React from 'react';
 import Tag from '../atoms/Tag';
+import { Phrase } from '@/types/phrase';
 import styles from './PhraseTable.module.css';
-
-
-type Phrase = {
-  id: number;
-  scene: string;
-  phrase: string;
-  tags: string[];
-};
 
 type PhraseTableProps = {
   phrases: Phrase[];
 };
 
-const PhraseTable: React.FC<PhraseTableProps> = ({ phrases }) => {
+const PhraseTable: React.FC<PhraseTableProps> = ({phrases}) => {
+
   return (
     <table className={styles.myTable}>
       <thead>
