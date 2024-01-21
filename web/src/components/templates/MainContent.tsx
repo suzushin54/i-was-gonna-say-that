@@ -1,22 +1,17 @@
 import React from 'react';
 import SearchBar from '@/components/molecules/SearchBar';
 import PhraseTable from '@/components/molecules/PhraseTable';
-import { SearchProvider } from '@/providers/SearchContext';
-import { Phrase } from '@/types/phrase';
+import {SearchProvider} from '@/providers/SearchContext';
+import {Phrase} from '@/types/phrase';
 
-type MainContentProps = {
-  phrases: Phrase[];
-};
+export default async function MainContent() {
+  const phrases: Phrase[] = await fetch('http://host.docker.internal:4000/phrases')
+    .then(response => response.json());
 
-const MainContent = ({ phrases }: MainContentProps) => {
   return (
     <SearchProvider>
-      <div>
-        <SearchBar />
-        <PhraseTable phrases={phrases} />
-      </div>
+      <SearchBar />
+      <PhraseTable phrases={phrases} />
     </SearchProvider>
   );
 };
-
-export default MainContent;
