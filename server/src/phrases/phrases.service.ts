@@ -11,36 +11,48 @@ export class PhrasesService {
   }
 
   async createPhrase(data: CreatePhraseDto) {
-    // dataを確認する
-    console.log(data);
-
     return this.prisma.phrase.create({
       data,
     });
   }
 
-  async searchPhrases(query: string) {
+  async searchPhrases(q: string) {
     return this.prisma.phrase.findMany({
       where: {
         OR: [
           {
             scene: {
-              contains: query,
+              contains: q,
               mode: 'insensitive',
             },
           },
           {
             phrase: {
-              contains: query,
+              contains: q,
               mode: 'insensitive',
             },
           },
           {
             tags: {
-              has: query,
+              has: q,
             },
           },
         ],
+      },
+    });
+  }
+
+  async suggestPhrases(q: string) {
+    return this.prisma.phrase.findMany({
+      where: {
+        phrase: {
+          contains: q,
+          mode: 'insensitive',
+        },
+      },
+      take: 10,
+      select: {
+        phrase: true,
       },
     });
   }

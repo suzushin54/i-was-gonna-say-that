@@ -17,7 +17,12 @@ export class PhrasesController {
   }
 
   @Get('search')
-  async search(@Query('query') query: string) {
-    return this.phrasesService.searchPhrases(query);
+  async search(@Query('q') q: string) {
+    return this.phrasesService.searchPhrases(q);
+  }
+
+  @Get('suggest')
+  async suggest(@Query('q') q: string) {
+    return this.phrasesService.suggestPhrases(q);
   }
 }
