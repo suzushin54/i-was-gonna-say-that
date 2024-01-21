@@ -42,8 +42,8 @@ export class PhrasesService {
     });
   }
 
-  async suggestPhrases(q: string) {
-    return this.prisma.phrase.findMany({
+  async suggestPhrases(q: string): Promise<string[]> {
+    const results = await this.prisma.phrase.findMany({
       where: {
         phrase: {
           contains: q,
@@ -55,5 +55,7 @@ export class PhrasesService {
         phrase: true,
       },
     });
+
+    return results.map((result) => result.phrase);
   }
 }

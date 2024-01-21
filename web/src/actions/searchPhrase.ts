@@ -11,7 +11,7 @@ export async function searchServerAction(formData: FormData) {
     throw new Error('検索クエリが不正です。');
   }
 
-  const response = await fetch(`http://host.docker.internal:4000/phrases/search?query=${encodeURIComponent(query)}`);
+  const response = await fetch(`http://host.docker.internal:4000/phrases/search?q=${encodeURIComponent(query)}`);
   const result: SearchPhrasesResponse = await response.json();
 
   return result;

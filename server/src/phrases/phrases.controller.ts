@@ -22,7 +22,7 @@ export class PhrasesController {
   }
 
   @Get('suggest')
-  async suggest(@Query('q') q: string) {
+  async suggest(@Query('q') q: string): Promise<string[]> {
     return this.phrasesService.suggestPhrases(q);
   }
 }

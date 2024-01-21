@@ -1,12 +1,14 @@
 .searchBar {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     padding: 10px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-@media (max-width: 600px) {
-    .searchBar {
-        flex-direction: column;
-    }
+.searchButton {
+    flex-shrink: 0;
 }
+
