@@ -10,8 +10,17 @@ stop:
 
 # Build the application
 build:
+	make build-api
+	make build-web
+
+# Build the API
+build-api:
 	rm -rf dist
-	docker compose build
+	docker compose build api --no-cache
+
+# Build the web app
+build-web:
+	docker compose build web --no-cache
 
 # Run Prisma migrations to update the database schema
 migrate-db:

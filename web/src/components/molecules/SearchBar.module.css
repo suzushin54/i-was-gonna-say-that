@@ -1,14 +1,62 @@
 .searchBar {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 10px;
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
 }
 
+.searchBar form {
+    flex-grow: 1;
+}
+
+.searchInput {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
 .searchButton {
+    padding: 8px 16px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    margin-left: -40px;
     flex-shrink: 0;
+}
+
+.suggestionsList {
+    list-style-type: none;
+    padding: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: absolute;
+    top: 80%;
+    width: 100%;
+    z-index: 1000;
+    left: 0;
+}
+
+.suggestionsList li {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #262626;
+    border-bottom: 1px solid #ccc;
+}
+
+.suggestionsList li:last-child {
+    border-bottom: none;
+}
+
+.suggestionsList li:hover {
+    background-color: #f0f0f0;
 }
 
