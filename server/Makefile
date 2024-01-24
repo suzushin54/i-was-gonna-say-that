@@ -10,8 +10,7 @@ stop:
 
 # Build the application
 build:
-	make build-api
-	make build-web
+	docker compose build --no-cache
 
 # Build the API
 build-api:

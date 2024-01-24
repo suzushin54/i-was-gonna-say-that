@@ -1,3 +1,9 @@
+CREATE TABLE IF NOT EXISTS scenes
+(
+    id   SERIAL PRIMARY KEY,
+    name VARCHAR(255) UNIQUE NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS phrases
 (
     id                   SERIAL PRIMARY KEY,
@@ -8,13 +14,6 @@ CREATE TABLE IF NOT EXISTS phrases
     updated_at           TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (scene_id) REFERENCES scenes (id)
 );
-
-CREATE TABLE IF NOT EXISTS scenes
-(
-    id   SERIAL PRIMARY KEY,
-    name VARCHAR(255) UNIQUE NOT NULL
-);
-
 
 CREATE TABLE IF NOT EXISTS tags
 (
