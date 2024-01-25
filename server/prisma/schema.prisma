@@ -47,4 +47,5 @@ model PhraseTag {
   tagId    Int
 
   @@id([phraseId, tagId])
+  @@map("phrase_tags")
 }

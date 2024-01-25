@@ -21,9 +21,12 @@ build-api:
 build-web:
 	docker compose build web --no-cache
 
+init-db:
+	docker-compose exec api pnpm prisma migrate dev --name init
+
 # Run Prisma migrations to update the database schema
-migrate-db:
-	pnpm prisma migrate dev
+migrate:
+	docker-compose exec api pnpm prisma migrate dev
 
 # Seed the database with initial data
 seed:
@@ -35,7 +38,8 @@ generate-prisma:
 
 # Reset the database and run migrations
 reset-db:
-	pnpm prisma migrate reset
+	docker-compose exec api pnpm prisma migrate reset
+
 
 # Shortcut for installing node modules
 install:
