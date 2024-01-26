@@ -16,20 +16,20 @@ model Scene {
   name    String   @unique
   phrases Phrase[]
 
-  @@map("scene")
+  @@map("scenes")
 }
 
 model Phrase {
   id                  Int         @id @default(autoincrement())
-  sceneId             Int
+  sceneId             Int         @map("scene_id")
   phrase              String
-  japaneseTranslation String
+  japaneseTranslation String      @map("japanese_translation")
   createdAt           DateTime    @default(now()) @map("created_at")
   updatedAt           DateTime    @default(now()) @updatedAt @map("updated_at")
   scene               Scene       @relation(fields: [sceneId], references: [id])
   phraseTags          PhraseTag[]
 
-  @@map("phrase")
+  @@map("phrases")
 }
 
 model Tag {
@@ -43,8 +43,8 @@ model Tag {
 model PhraseTag {
   phrase   Phrase @relation(fields: [phraseId], references: [id])
   tag      Tag    @relation(fields: [tagId], references: [id])
-  phraseId Int
-  tagId    Int
+  phraseId Int    @map("phrase_id")
+  tagId    Int    @map("tag_id")
 
   @@id([phraseId, tagId])
   @@map("phrase_tags")

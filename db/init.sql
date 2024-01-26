@@ -1,35 +1,3 @@
-CREATE TABLE IF NOT EXISTS scenes
-(
-    id   SERIAL PRIMARY KEY,
-    name VARCHAR(255) UNIQUE NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS phrases
-(
-    id                   SERIAL PRIMARY KEY,
-    scene_id             INT,
-    phrase               TEXT,
-    japanese_translation TEXT,
-    created_at           TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at           TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (scene_id) REFERENCES scenes (id)
-);
-
-CREATE TABLE IF NOT EXISTS tags
-(
-    id  SERIAL PRIMARY KEY,
-    tag VARCHAR(255) UNIQUE NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS phrase_tags
-(
-    phrase_id INT NOT NULL,
-    tag_id    INT NOT NULL,
-    FOREIGN KEY (phrase_id) REFERENCES phrases (id),
-    FOREIGN KEY (tag_id) REFERENCES tags (id),
-    PRIMARY KEY (phrase_id, tag_id)
-);
-
 INSERT INTO scenes (name)
 VALUES ('Restaurant'),
        ('Airport'),
