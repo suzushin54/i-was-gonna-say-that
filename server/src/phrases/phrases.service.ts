@@ -21,20 +21,15 @@ export class PhrasesService {
       where: {
         OR: [
           {
-            scene: {
-              contains: q,
-              mode: 'insensitive',
-            },
-          },
-          {
             phrase: {
               contains: q,
               mode: 'insensitive',
             },
           },
           {
-            tags: {
-              has: q,
+            japaneseTranslation: {
+              contains: q,
+              mode: 'insensitive',
             },
           },
         ],

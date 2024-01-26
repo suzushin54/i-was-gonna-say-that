@@ -10,8 +10,7 @@ stop:
 
 # Build the application
 build:
-	make build-api
-	make build-web
+	docker compose build --no-cache
 
 # Build the API
 build-api:
@@ -22,21 +21,21 @@ build-api:
 build-web:
 	docker compose build web --no-cache
 
-# Run Prisma migrations to update the database schema
-migrate-db:
-	pnpm prisma migrate dev
+init-db:
+	docker compose exec api pnpm prisma migrate dev --name init
 
-# Seed the database with initial data
-seed:
-	docker-compose exec api pnpm prisma db seed
+# Run Prisma migrations to update the database schema
+migrate:
+	docker compose exec api pnpm prisma migrate dev
 
 # Generate Prisma client
-generate-prisma:
-	pnpm prisma generate
+prisma-gen:
+	docker compose exec api pnpm prisma generate
 
 # Reset the database and run migrations
 reset-db:
-	pnpm prisma migrate reset
+	docker compose exec api pnpm prisma migrate reset
+
 
 # Shortcut for installing node modules
 install:

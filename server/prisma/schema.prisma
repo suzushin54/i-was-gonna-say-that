@@ -11,13 +11,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Phrase {
-  id        Int      @id @default(autoincrement())
-  scene     String
-  phrase    String
-  tags      String[]
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+model Scene {
+  id      Int      @id @default(autoincrement())
+  name    String   @unique
+  phrases Phrase[]
 
-  @@map("phrase")
+  @@map("scenes")
+}
+
+model Phrase {
+  id                  Int         @id @default(autoincrement())
+  sceneId             Int         @map("scene_id")
+  phrase              String
+  japaneseTranslation String      @map("japanese_translation")
+  createdAt           DateTime    @default(now()) @map("created_at")
+  updatedAt           DateTime    @default(now()) @updatedAt @map("updated_at")
+  scene               Scene       @relation(fields: [sceneId], references: [id])
+  phraseTags          PhraseTag[]
+
+  @@map("phrases")
+}
+
+model Tag {
+  id         Int         @id @default(autoincrement())
+  tag        String      @unique
+  phraseTags PhraseTag[]
+
+  @@map("tags")
+}
+
+model PhraseTag {
+  phrase   Phrase @relation(fields: [phraseId], references: [id])
+  tag      Tag    @relation(fields: [tagId], references: [id])
+  phraseId Int    @map("phrase_id")
+  tagId    Int    @map("tag_id")
+
+  @@id([phraseId, tagId])
+  @@map("phrase_tags")
 }
