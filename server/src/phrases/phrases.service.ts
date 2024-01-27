@@ -7,7 +7,26 @@ export class PhrasesService {
   constructor(private prisma: PrismaService) {}
 
   async getAllPhrases() {
-    return this.prisma.phrase.findMany();
+    const phrases = await this.prisma.phrase.findMany({
+      include: {
+        scene: true,
+        phraseTags: {
+          include: {
+            tag: true,
+          },
+        },
+      }
+    });
+
+    return phrases.map(phrase => ({
+      id: phrase.id,
+      sceneName: phrase.scene.name,
+      phrase: phrase.phrase,
+      japaneseTranslation: phrase.japaneseTranslation,
+      createdAt: phrase.createdAt,
+      updatedAt: phrase.updatedAt,
+      tags: phrase.phraseTags.map(pt => pt.tag.tag)
+    }));
   }
 
   async createPhrase(data: CreatePhraseDto) {

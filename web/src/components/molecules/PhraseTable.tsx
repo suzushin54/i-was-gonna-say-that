@@ -21,8 +21,9 @@ const PhraseTable: React.FC<PhraseTableProps> = ({phrases: initialPhrases}) => {
       <thead>
       <tr>
         <th>ID</th>
-        <th>Scene</th>
+        <th>Scene Name</th>
         <th>Phrase</th>
+        <th>Japanese</th>
         <th>Tags</th>
       </tr>
       </thead>
@@ -30,8 +31,9 @@ const PhraseTable: React.FC<PhraseTableProps> = ({phrases: initialPhrases}) => {
       {phrases.map((phrase) => (
         <tr key={phrase.id}>
           <td>{phrase.id}</td>
-          <td>{phrase.scene}</td>
+          <td>{phrase.sceneName}</td>
           <td>{phrase.phrase}</td>
+          <td>{phrase.japaneseTranslation}</td>
           <td>
             {phrase.tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>

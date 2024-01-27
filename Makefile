@@ -14,7 +14,7 @@ build:
 
 # Build the API
 build-api:
-	rm -rf dist
+	rm -rf ./server/dist
 	docker compose build api --no-cache
 
 # Build the web app
@@ -39,6 +39,7 @@ reset-db:
 
 # Shortcut for installing node modules
 install:
-	pnpm install
+	cd server && pnpm install
+	cd web && pnpm install
 
 .PHONY: start-dev build migrate-db seed-db generate-prisma reset-db install
