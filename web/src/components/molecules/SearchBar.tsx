@@ -59,7 +59,7 @@ const SearchBar = () => {
           value={searchQuery}
           onChange={(e) => handleInputChange(e.target.value)}
           name="query"
-          placeholder="Search..."
+          placeholder="Search phrases or japanese characters"
         />
         {isFetching && <div>Loading...</div>}
         {suggestionOptions.length > 0 && (
