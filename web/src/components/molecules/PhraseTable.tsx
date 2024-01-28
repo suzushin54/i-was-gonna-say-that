@@ -35,9 +35,9 @@ const PhraseTable: React.FC<PhraseTableProps> = ({phrases: initialPhrases}) => {
           <td>{phrase.phrase}</td>
           <td>{phrase.japaneseTranslation}</td>
           <td>
-            {phrase.tags.map((tag) => (
+            {(phrase.tags || []).map((tag) =>
               <Tag key={tag}>{tag}</Tag>
-            ))}
+            )}
           </td>
         </tr>
       ))}

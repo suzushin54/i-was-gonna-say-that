@@ -15,17 +15,17 @@ export class PhrasesService {
             tag: true,
           },
         },
-      }
+      },
     });
 
-    return phrases.map(phrase => ({
+    return phrases.map((phrase) => ({
       id: phrase.id,
       sceneName: phrase.scene.name,
       phrase: phrase.phrase,
       japaneseTranslation: phrase.japaneseTranslation,
       createdAt: phrase.createdAt,
       updatedAt: phrase.updatedAt,
-      tags: phrase.phraseTags.map(pt => pt.tag.tag)
+      tags: phrase.phraseTags.map((pt) => pt.tag.tag),
     }));
   }
 
@@ -57,19 +57,32 @@ export class PhrasesService {
   }
 
   async suggestPhrases(q: string): Promise<string[]> {
+    // NOTE: 日本語が含まれていれば JapaneseTranslation で検索し、そうでなければ Phrase で検索
+    const isQueryJapanese = isJapanese(q);
+
+    const whereCondition = isQueryJapanese
+      ? { japaneseTranslation: { contains: q, mode: 'insensitive' as const } }
+      : { phrase: { contains: q, mode: 'insensitive' as const } };
+
+    const selectField = isQueryJapanese
+      ? { japaneseTranslation: true }
+      : { phrase: true };
+
     const results = await this.prisma.phrase.findMany({
-      where: {
-        phrase: {
-          contains: q,
-          mode: 'insensitive',
-        },
-      },
+      where: { OR: [whereCondition] },
       take: 10,
-      select: {
-        phrase: true,
-      },
+      select: selectField,
     });
 
-    return results.map((result) => result.phrase);
+    return results.map((result) =>
+      isQueryJapanese ? result.japaneseTranslation : result.phrase,
+    );
   }
+}
+
+// 日本語の文字範囲（ひらがな、カタカナ、漢字）を判定する
+function isJapanese(str: string): boolean {
+  return /[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\u3400-\u4dbf\u4e00-\u9faf\uF900-\uFAFF\uFF66-\uFF9F]/.test(
+    str,
+  );
 }
