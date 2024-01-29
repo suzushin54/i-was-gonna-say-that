@@ -18,15 +18,7 @@ export class PhrasesService {
       },
     });
 
-    return phrases.map((phrase) => ({
-      id: phrase.id,
-      sceneName: phrase.scene.name,
-      phrase: phrase.phrase,
-      japaneseTranslation: phrase.japaneseTranslation,
-      createdAt: phrase.createdAt,
-      updatedAt: phrase.updatedAt,
-      tags: phrase.phraseTags.map((pt) => pt.tag.tag),
-    }));
+    return this.transformPhrases(phrases);
   }
 
   async createPhrase(data: CreatePhraseDto) {
@@ -36,7 +28,15 @@ export class PhrasesService {
   }
 
   async searchPhrases(q: string) {
-    return this.prisma.phrase.findMany({
+    const phrases = await this.prisma.phrase.findMany({
+      include: {
+        scene: true,
+        phraseTags: {
+          include: {
+            tag: true,
+          },
+        },
+      },
       where: {
         OR: [
           {
@@ -54,6 +54,8 @@ export class PhrasesService {
         ],
       },
     });
+
+    return this.transformPhrases(phrases);
   }
 
   async suggestPhrases(q: string): Promise<string[]> {
@@ -77,6 +79,18 @@ export class PhrasesService {
     return results.map((result) =>
       isQueryJapanese ? result.japaneseTranslation : result.phrase,
     );
+  }
+
+  private transformPhrases(phrases: any[]): any[] {
+    return phrases.map((phrase) => ({
+      id: phrase.id,
+      sceneName: phrase.scene.name,
+      phrase: phrase.phrase,
+      japaneseTranslation: phrase.japaneseTranslation,
+      createdAt: phrase.createdAt,
+      updatedAt: phrase.updatedAt,
+      tags: phrase.phraseTags.map((pt: { tag: { tag: string } }) => pt.tag.tag),
+    }));
   }
 }
 

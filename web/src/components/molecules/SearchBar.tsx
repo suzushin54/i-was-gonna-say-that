@@ -39,16 +39,23 @@ const SearchBar = () => {
     setSearchQuery(newValue);
   };
 
-  // const handleChange = (selectedOption: SelectOption | null) => {
-  //   setSelectedSuggestion(selectedOption);
-  //   setSearchQuery(selectedOption ? selectedOption.value : '');
-  // };
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    await executeSearch(searchQuery);
+  };
+
+  const handleSuggestionSelect = async (suggestion: string) => {
+    setSearchQuery(suggestion);
+    await executeSearch(suggestion);
+  };
+
+  const executeSearch = async (query: string) => {
+    const formData = new FormData();
+    formData.append('query', query);
     const result = await searchServerAction(formData);
     setPhrases(result);
+    setSuggestionOptions([]);
+    setSearchQuery('');
   };
 
   return (
@@ -65,8 +72,9 @@ const SearchBar = () => {
         {suggestionOptions.length > 0 && (
           <ul className={styles.suggestionsList}>
             {suggestionOptions.map((suggestion, index) => (
-              <li key={index}>{suggestion}</li>
-            ))}
+              <li key={index} onClick={() => handleSuggestionSelect(suggestion)}>
+                {suggestion}
+              </li>))}
           </ul>
         )}
       </form>
