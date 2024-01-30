@@ -6,4 +6,4 @@ export type Phrase = {
   phrase: string;
   japaneseTranslation: string;
   tags: string[];
-} & Timestamps
+} & Partial<Timestamps>; // Partial<Timestamps> means that the type is optional

@@ -1,20 +1,26 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Button from '@/components/atoms/Button';
 import styles from './AddPhraseForm.module.css';
 
 const AddPhraseForm: React.FC = () => {
-  const [phraseData, setPhraseData] = useState({scene: '', phrase: '', tags: ''});
+  const [phraseData, setPhraseData] = useState({
+    sceneName: '',
+    phrase: '',
+    japaneseTranslation: '',
+    tags: ''
+  });
 
-  const handleSubmit = async () => {
-    try {
+    const handleSubmit = async () => {
+      try {
       const response = await fetch('http://localhost:4000/phrases', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          scene: phraseData.scene,
+          sceneName: phraseData.sceneName,
           phrase: phraseData.phrase,
+          japaneseTranslation: phraseData.japaneseTranslation,
           tags: phraseData.tags.split(',').map(tag => tag.trim())
         })
       });
@@ -42,7 +48,7 @@ const AddPhraseForm: React.FC = () => {
           type="text"
           id="scene"
           className={styles.input}
-          value={phraseData.scene}
+          value={phraseData.sceneName}
           onChange={handleInputChange}
         />
       </div>
@@ -53,6 +59,16 @@ const AddPhraseForm: React.FC = () => {
           className={styles.textarea}
           rows={3}
           value={phraseData.phrase}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div className={styles.formGroup}>
+        <label htmlFor="japaneseTranslation" className={styles.label}>Japanese Translation:</label>
+        <textarea
+          id="japaneseTranslation"
+          className={styles.textarea}
+          rows={3}
+          value={phraseData.japaneseTranslation}
           onChange={handleInputChange}
         />
       </div>
