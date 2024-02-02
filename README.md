@@ -15,7 +15,8 @@ The application allows users to view a list of phrases and register new ones, pr
 
 - TypeScript
 - Next.js 14.x
-  - with AppRouter
+  - AppRouter
+  - ServerActions
 
 ## Backend
 
@@ -33,7 +34,7 @@ To run the application locally, ensure you have Docker and Docker Compose instal
 3. Run the following command to build and start the services:
 
 ```sh
-cd ./server
 make build
 make start
+make init-db
 ```    
