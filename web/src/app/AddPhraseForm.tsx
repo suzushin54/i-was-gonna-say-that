@@ -65,7 +65,7 @@ const AddPhraseForm: React.FC = () => {
         <label htmlFor="scene" className={styles.label}>Scene:</label>
         <input
           type="text"
-          id="scene"
+          id="sceneName"
           className={styles.input}
           value={phraseData.sceneName}
           onChange={handleInputChange}
