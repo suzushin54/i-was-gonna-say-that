@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
-import { PhrasesModule } from './phrases/phrases.module';
+import { ScenesModule } from './scenes/scenes.module';
 import { TagsModule } from './tags/tags.module';
+import { PhrasesModule } from './phrases/phrases.module';
 
 @Module({
-  imports: [PhrasesModule, TagsModule],
+  imports: [ScenesModule, TagsModule, PhrasesModule],
   controllers: [],
   providers: [PrismaService],
 })
