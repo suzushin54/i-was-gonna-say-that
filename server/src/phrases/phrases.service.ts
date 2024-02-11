@@ -22,8 +22,29 @@ export class PhrasesService {
   }
 
   async createPhrase(data: CreatePhraseDto) {
-    return this.prisma.phrase.create({
-      data,
+    return this.prisma.$transaction(async (prisma) => {
+      const { sceneId, phrase, japaneseTranslation, tagIds } = data;
+
+      return await prisma.phrase.create({
+        data: {
+          sceneId,
+          phrase,
+          japaneseTranslation,
+          phraseTags: {
+            create: tagIds.map((tagId) => ({
+              tagId,
+            })),
+          },
+        },
+        include: {
+          scene: true,
+          phraseTags: {
+            include: {
+              tag: true,
+            },
+          },
+        },
+      });
     });
   }
 

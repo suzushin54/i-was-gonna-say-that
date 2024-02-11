@@ -54,6 +54,8 @@ const AddPhraseForm: React.FC = () => {
   });
 
   const handleSubmit = async () => {
+    const tagIds = selectedTags.map(tag => tag.id);
+
     try {
       const response = await fetch('http://localhost:4000/phrases', {
         method: 'POST',
@@ -61,10 +63,10 @@ const AddPhraseForm: React.FC = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          sceneName: phraseData.sceneName,
+          sceneId: selectedScene?.id,
           phrase: phraseData.phrase,
           japaneseTranslation: phraseData.japaneseTranslation,
-          tags: phraseData.tags.split(',').map(tag => tag.trim())
+          tagIds: tagIds,
         })
       });
 
