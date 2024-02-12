@@ -3,6 +3,7 @@
 import React from 'react';
 import Tag from '../atoms/Tag';
 import { useSearch } from '@/providers/SearchContext';
+import { filterPhrasesByTag } from '@/actions/searchPhraseByTag';
 import { Phrase } from '@/types/phrase';
 import styles from './PhraseTable.module.css';
 
@@ -11,10 +12,20 @@ type PhraseTableProps = {
 };
 
 const PhraseTable: React.FC<PhraseTableProps> = ({phrases: initialPhrases}) => {
-  const { phrases: contextPhrases } = useSearch(); // 検索結果のPhrases
+  const { phrases: contextPhrases } = useSearch();
+  const { setPhrases } = useSearch();
 
   // 検索結果があればそれを、なければ初期表示のPhrasesを表示する
   const phrases = contextPhrases.length > 0 ? contextPhrases : initialPhrases;
+
+  const handleTagClick = async (tagName: string) => {
+    try {
+      const filteredPhrases = await filterPhrasesByTag(tagName);
+      setPhrases(filteredPhrases);
+    } catch (error) {
+      console.error('フレーズの絞り込みに失敗しました。', error);
+    }
+  };
 
   return (
     <table className={styles.myTable}>
@@ -36,7 +47,7 @@ const PhraseTable: React.FC<PhraseTableProps> = ({phrases: initialPhrases}) => {
           <td>{phrase.japaneseTranslation}</td>
           <td>
             {(phrase.tags || []).map((tag) =>
-              <Tag key={tag}>{tag}</Tag>
+              <Tag key={tag} onClick={() => handleTagClick(tag)}>{tag}</Tag>
             )}
           </td>
         </tr>

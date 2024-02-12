@@ -5,5 +5,14 @@
     margin-right: 4px;
     font-size: 14px;
     display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+.tag:hover {
+    background-color: #0349a8;
+}
+
+.tag:active {
+    background-color: #022d70;
+}
