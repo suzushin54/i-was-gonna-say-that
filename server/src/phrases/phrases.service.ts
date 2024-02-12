@@ -79,6 +79,30 @@ export class PhrasesService {
     return this.transformPhrases(phrases);
   }
 
+  async getPhrasesByTag(tag: string) {
+    const phrases = await this.prisma.phrase.findMany({
+      include: {
+        scene: true,
+        phraseTags: {
+          include: {
+            tag: true,
+          },
+        },
+      },
+      where: {
+        phraseTags: {
+          some: {
+            tag: {
+              tag,
+            },
+          },
+        },
+      },
+    });
+
+    return this.transformPhrases(phrases);
+  }
+
   async suggestPhrases(q: string): Promise<string[]> {
     // NOTE: 日本語が含まれていれば JapaneseTranslation で検索し、そうでなければ Phrase で検索
     const isQueryJapanese = isJapanese(q);
