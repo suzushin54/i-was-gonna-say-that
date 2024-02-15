@@ -2,6 +2,7 @@
 
 import React, {useState} from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Button from '@/components/atoms/Button';
 import Modal from '@/components/molecules/Modal';
 import AddPhraseForm from "@/app/AddPhraseForm";
@@ -16,6 +17,18 @@ const Header: React.FC = () => {
       <div className={styles.logoTitleContainer}>
         <Image src={logo} alt="Logo" width={30} height={30} />
         <h1>I was gonna say that.</h1>
+      </div>
+      <div className={styles.navContainer}>
+        <nav>
+          <ul className={styles.navList}>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/scenes">Scenes</Link>
+            </li>
+          </ul>
+        </nav>
       </div>
       <Button text="Add" onClick={() => setIsModalOpen(true)} />
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
