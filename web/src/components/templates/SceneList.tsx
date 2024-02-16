@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import styles from './SceneList.module.css';
 import { Scene } from '@/types/scene';
 
 export const SceneList: React.FC = () => {
@@ -17,13 +18,22 @@ export const SceneList: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Scene List</h2>
-      <ul>
-        {scenes.map((scene) => (
-          <li key={scene.id}>{scene.name}</li>
-        ))}
-      </ul>
-    </div>
+    <table className={styles.sceneTable}>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Scene Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      {scenes.map(scene => (
+        <tr key={scene.id}>
+          <td>{scene.id}</td>
+          <td>{scene.name}</td>
+        </tr>
+      ))}
+      </tbody>
+    </table>
+
   );
 };

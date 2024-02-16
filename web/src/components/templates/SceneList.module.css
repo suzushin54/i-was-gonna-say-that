@@ -1,0 +1,21 @@
+.sceneTable {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    color: #DDDDDD;
+}
+
+.sceneTable th, .sceneTable td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.sceneTable th {
+    background-color: #424242;
+    color: #FFFFFF;
+}
+
+.sceneTable tr:hover {
+    background-color: #252525;
+}
