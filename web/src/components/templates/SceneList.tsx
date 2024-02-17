@@ -23,6 +23,9 @@ export const SceneList: React.FC = () => {
       <tr>
         <th>ID</th>
         <th>Scene Name</th>
+        <th>Note</th>
+        <th>CreatedAt</th>
+        <th>UpdatedAt</th>
       </tr>
       </thead>
       <tbody>
@@ -30,6 +33,9 @@ export const SceneList: React.FC = () => {
         <tr key={scene.id}>
           <td>{scene.id}</td>
           <td>{scene.name}</td>
+          <td>{scene.note}</td>
+          <td>{scene.createdAt}</td>
+          <td>{scene.updatedAt}</td>
         </tr>
       ))}
       </tbody>
