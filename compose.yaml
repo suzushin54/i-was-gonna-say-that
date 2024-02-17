@@ -11,7 +11,8 @@ services:
       - DATABASE_URL=postgresql://app:P@ssw0rd!@postgres/iwgst
     command: npm run start:dev
     volumes:
-      - ./server/prisma/migrations:/usr/src/app/prisma/migrations
+      - ./server/prisma:/usr/src/app/prisma
+      - ./server/src:/usr/src/app/src
 
   web:
     build:

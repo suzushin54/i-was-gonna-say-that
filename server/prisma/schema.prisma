@@ -12,9 +12,12 @@ datasource db {
 }
 
 model Scene {
-  id      Int      @id @default(autoincrement())
-  name    String   @unique
-  phrases Phrase[]
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  note      String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  phrases   Phrase[]
 
   @@map("scenes")
 }
