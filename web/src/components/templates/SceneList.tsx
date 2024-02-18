@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './SceneList.module.css';
 import { Scene } from '@/types/scene';
+import { formatDate } from '@/helper/formatDate';
 
 export const SceneList: React.FC = () => {
   const [scenes, setScenes] = useState<Scene[]>([]);
@@ -34,8 +35,8 @@ export const SceneList: React.FC = () => {
           <td>{scene.id}</td>
           <td>{scene.name}</td>
           <td>{scene.note}</td>
-          <td>{scene.createdAt}</td>
-          <td>{scene.updatedAt}</td>
+          <td>{formatDate(scene.createdAt)}</td>
+          <td>{formatDate(scene.updatedAt)}</td>
         </tr>
       ))}
       </tbody>
