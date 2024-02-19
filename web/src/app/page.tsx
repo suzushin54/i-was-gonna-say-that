@@ -7,10 +7,8 @@ export default async function PhraseListPage() {
   return (
     <main className={styles.main}>
       <div>
-        <main className={styles.main}>
-          <Header />
-          <MainContent />
-        </main>
+        <Header />
+        <MainContent />
       </div>
     </main>
   );
