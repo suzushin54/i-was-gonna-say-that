@@ -21,6 +21,14 @@ export class PhrasesService {
     return this.transformPhrases(phrases);
   }
 
+  async getPhrasesByScene(sceneId: string) {
+    return this.prisma.phrase.findMany({
+      where: {
+        sceneId: parseInt(sceneId, 10),
+      },
+    });
+  }
+
   async createPhrase(data: CreatePhraseDto) {
     return this.prisma.$transaction(async (prisma) => {
       const { sceneId, phrase, japaneseTranslation, tagIds } = data;

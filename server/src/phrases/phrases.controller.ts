@@ -7,9 +7,11 @@ export class PhrasesController {
   constructor(private readonly phrasesService: PhrasesService) {}
 
   @Get()
-  async getPhrases(@Query('tag') tag?: string) {
+  async getPhrases(@Query('tag') tag?: string, @Query('scene') scene?: string) {
     if (tag) {
       return this.phrasesService.getPhrasesByTag(tag);
+    } else if (scene) {
+      return this.phrasesService.getPhrasesByScene(scene);
     }
 
     return this.phrasesService.getAllPhrases();
