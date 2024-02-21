@@ -41,6 +41,5 @@ export const SceneList: React.FC = () => {
       ))}
       </tbody>
     </table>
-
   );
 };

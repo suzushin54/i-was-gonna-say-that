@@ -2,6 +2,7 @@ import { Timestamps } from '@/types/timestamps';
 
 export type Phrase = {
   id: number;
+  sceneId: number;
   sceneName: string;
   phrase: string;
   japaneseTranslation: string;
