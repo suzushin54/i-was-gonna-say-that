@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from '@/components/molecules/SearchBar';
-import PhraseTable from '@/components/molecules/PhraseTable';
+import PhraseTable from '@/components/organisms/PhraseTable';
 import {SearchProvider} from '@/providers/SearchContext';
 import {Phrase} from '@/types/phrase';
 

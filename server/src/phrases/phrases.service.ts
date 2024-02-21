@@ -22,11 +22,23 @@ export class PhrasesService {
   }
 
   async getPhrasesByScene(sceneId: string) {
-    return this.prisma.phrase.findMany({
+    const phrases = await this.prisma.phrase.findMany({
+      include: {
+        scene: true,
+        phraseTags: {
+          include: {
+            tag: true,
+          },
+        },
+      },
       where: {
-        sceneId: parseInt(sceneId, 10),
+        sceneId: {
+          equals: parseInt(sceneId),
+        },
       },
     });
+
+    return this.transformPhrases(phrases);
   }
 
   async createPhrase(data: CreatePhraseDto) {
@@ -137,6 +149,7 @@ export class PhrasesService {
   private transformPhrases(phrases: any[]): any[] {
     return phrases.map((phrase) => ({
       id: phrase.id,
+      sceneId: phrase.sceneId,
       sceneName: phrase.scene.name,
       phrase: phrase.phrase,
       japaneseTranslation: phrase.japaneseTranslation,

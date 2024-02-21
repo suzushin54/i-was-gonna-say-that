@@ -6,6 +6,7 @@ import { useSearch } from '@/providers/SearchContext';
 import { filterPhrasesByTag } from '@/actions/searchPhraseByTag';
 import { Phrase } from '@/types/phrase';
 import styles from './PhraseTable.module.css';
+import {filterPhrasesBySceneId} from "@/actions/searchPhraseByScene";
 
 type PhraseTableProps = {
   phrases: Phrase[]; // 初期表示のPhrases
@@ -27,6 +28,15 @@ const PhraseTable: React.FC<PhraseTableProps> = ({phrases: initialPhrases}) => {
     }
   };
 
+  const handleSceneClick = async (sceneId: number) => {
+    try {
+      const filteredPhrases = await filterPhrasesBySceneId(sceneId);
+      setPhrases(filteredPhrases);
+    } catch (error) {
+      console.error('フレーズの絞り込みに失敗しました。', error);
+    }
+  };
+
   return (
     <table className={styles.myTable}>
       <thead>
@@ -42,7 +52,7 @@ const PhraseTable: React.FC<PhraseTableProps> = ({phrases: initialPhrases}) => {
       {phrases.map((phrase) => (
         <tr key={phrase.id}>
           <td>{phrase.id}</td>
-          <td>{phrase.sceneName}</td>
+          <td onClick={() => handleSceneClick(phrase.sceneId)}>{phrase.sceneName}</td>
           <td>{phrase.phrase}</td>
           <td>{phrase.japaneseTranslation}</td>
           <td>
