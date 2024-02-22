@@ -22,6 +22,11 @@ export class PhrasesService {
   }
 
   async getPhrasesByScene(sceneId: string) {
+    const parsedSceneId = parseInt(sceneId, 10);
+    if (isNaN(parsedSceneId)) {
+      throw new Error('Invalid scene ID');
+    }
+
     const phrases = await this.prisma.phrase.findMany({
       include: {
         scene: true,
@@ -33,7 +38,7 @@ export class PhrasesService {
       },
       where: {
         sceneId: {
-          equals: parseInt(sceneId),
+          equals: parsedSceneId,
         },
       },
     });
