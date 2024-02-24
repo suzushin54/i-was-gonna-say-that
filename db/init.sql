@@ -1,15 +1,15 @@
 INSERT INTO scenes (name, note)
 VALUES
     ('Restaurant', 'Casual dining and fast food'),
-    ('Airport', NULL),
+    ('Airport', ''),
     ('Hotel', 'Booking and accommodation services'),
-    ('Business Meeting', NULL),
+    ('Business Meeting', ''),
     ('Taxi', 'City transport and fare negotiation'),
-    ('Shopping', NULL),
+    ('Shopping', ''),
     ('Doctor''s Office', 'Appointment and consultation'),
-    ('Phone Call', NULL),
+    ('Phone Call', ''),
     ('Coffee Shop', 'Ordering drinks and snacks'),
-    ('Library', NULL);
+    ('Library', '');
 
 
 INSERT INTO tags (tag)

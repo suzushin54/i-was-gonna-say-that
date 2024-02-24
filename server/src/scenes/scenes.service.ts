@@ -7,7 +7,11 @@ export class ScenesService {
   constructor(private prisma: PrismaService) {}
 
   findAll() {
-    return this.prisma.scene.findMany();
+    return this.prisma.scene.findMany({
+      orderBy: {
+        id: 'asc',
+      },
+    });
   }
 
   create(data: CreateSceneDto) {
