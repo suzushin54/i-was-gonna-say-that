@@ -6,6 +6,18 @@ import { CreateSceneDto } from './dto/create-scene.dto';
 export class ScenesService {
   constructor(private prisma: PrismaService) {}
 
+  async findOne(id: number) {
+    const scene = await this.prisma.scene.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!scene) {
+      return;
+    }
+
+    return scene;
+  }
+
   findAll() {
     return this.prisma.scene.findMany({
       orderBy: {

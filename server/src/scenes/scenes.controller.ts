@@ -1,10 +1,22 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { ScenesService } from './scenes.service';
 import { CreateSceneDto } from './dto/create-scene.dto';
 
 @Controller('scenes')
 export class ScenesController {
   constructor(private readonly sceneService: ScenesService) {}
+
+  @Get(':id')
+  getSceneById(@Param('id', ParseIntPipe) id: number) {
+    return this.sceneService.findOne(id);
+  }
 
   @Get()
   findAll() {
