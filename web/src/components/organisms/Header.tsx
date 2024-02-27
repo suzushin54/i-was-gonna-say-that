@@ -28,9 +28,16 @@ const Header: React.FC = () => {
               <Link href="/scenes">Scenes</Link>
             </li>
           </ul>
+          <ul className={styles.actionList}>
+            <li>
+              <a href="#" onClick={() => setIsModalOpen(true)}>Add Phrase</a>
+            </li>
+            <li>
+              <Link href="/scenes/add">Add Scene</Link>
+            </li>
+          </ul>
         </nav>
       </div>
-      <Button text="Add" onClick={() => setIsModalOpen(true)} />
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <AddPhraseForm />
       </Modal>
