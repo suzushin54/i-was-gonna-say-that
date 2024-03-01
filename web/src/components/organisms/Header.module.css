@@ -3,17 +3,14 @@
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 5px 15px 15px 15px;
 }
 
 .logoTitleContainer {
-    width: 360px;
     display: flex;
     align-items: center;
     gap: 10px; /* ロゴとタイトルの間隔 */
 }
-
 
 .logo {
     margin-right: 10px;
@@ -28,54 +25,27 @@
     text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
-.navContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-.navList {
+.navList, .actionList {
     list-style: none;
     display: flex;
     padding: 0;
-    margin: 0;
+    margin-left: 20px;
     align-items: center;
 }
 
-.navList li {
+.navList li, .actionList li {
     margin-right: 20px;
 }
 
-.navList li:last-child {
-    margin-right: auto;
+.navList li:last-child, .actionList li:last-child {
+    margin-right: 0;
 }
 
-.navList a {
+.navList a, .actionList a {
     text-decoration: none;
     color: #b3c1cb;
 }
 
-.navList a:hover {
-    text-decoration: underline;
-}
-
-.actionList {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
-    align-items: center;
-}
-
-.actionList li {
-    margin-left: 20px;
-}
-
-.actionList a {
-    text-decoration: none;
-    color: #b3c1cb;
-}
-
-.actionList a:hover {
+.navList a:hover, .actionList a:hover {
     text-decoration: underline;
 }

@@ -18,29 +18,25 @@ const Header: React.FC = () => {
         <Image src={logo} alt="Logo" width={30} height={30} />
         <h1>I was gonna say that.</h1>
       </div>
-      <div className={styles.navContainer}>
-        <nav>
-          <ul className={styles.navList}>
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/scenes">Scenes</Link>
-            </li>
-          </ul>
-          <ul className={styles.actionList}>
-            <li>
-              <a href="#" onClick={() => setIsModalOpen(true)}>Add Phrase</a>
-            </li>
-            <li>
-              <Link href="/scenes/add">Add Scene</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <AddPhraseForm />
-      </Modal>
+      <nav>
+        <ul className={styles.navList}>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/scenes">Scenes</Link>
+          </li>
+          <li>
+            <Link href="/tags">Tags</Link>
+          </li>
+          <li>
+            <Link href="/add-phrase">Add Phrase</Link>
+          </li>
+          <li>
+            <Link href="/add-scene">Add Scene</Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };
