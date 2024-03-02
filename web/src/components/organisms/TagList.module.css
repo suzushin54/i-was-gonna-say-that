@@ -1,0 +1,21 @@
+.tagTable {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    color: #DDDDDD;
+}
+
+.tagTable th, .tagTable td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tagTable th {
+    background-color: #424242;
+    color: #FFFFFF;
+}
+
+.tagTable tr:hover {
+    background-color: #252525;
+}
