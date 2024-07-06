@@ -6,6 +6,8 @@
 
 The application allows users to view a list of phrases and register new ones, providing a handy reference for language learners or anyone looking to polish their conversational skills.
 
+![iwgst-site-image](https://github.com/suzushin54/i-was-gonna-say-that/assets/16548805/6d4af6da-d2c6-49b9-9c24-f80a3c90bb69)
+
 ## Features
 
 - Browse a list of useful English phrases for various situations.
